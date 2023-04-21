@@ -1,0 +1,44 @@
+﻿@model Category[]
+
+@{
+    var categories = Model;
+}
+
+<h1 class="text-center my-5">Categorie</h1>
+
+<div class="d-flex align-items-center flex-column">
+    <a class="btn btn-success mb-3" href="@Url.Action("Create", "Category")">Aggiungi Categoria</a>
+
+    @if (categories is null) 
+    {
+        <p class="text-center my-3">No categories to Display</p>
+    }
+    else
+    {
+        <table class="table table-striped w-50">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in categories)
+                {
+                    <tr class="text-center align-middle">
+                        <td scope="row"> @category.Id </td>
+                        <td> @category.Name</td>
+                        <td>
+                            <form method="post" asp-action="Delete" asp-controller="Category" asp-route-id="@category.Id">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger w-100">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+

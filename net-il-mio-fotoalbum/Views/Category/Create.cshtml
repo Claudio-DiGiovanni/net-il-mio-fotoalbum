@@ -1,0 +1,15 @@
+﻿@model Category;
+
+
+
+<h2 class="text-center my-3">Crea una nuova categoria</h2>
+
+<form class="p-5" method="post" asp-action="Create" asp-controller="Category">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Nome Categoria</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Inserisci il nome della categoria">
+        <span asp-validation-for="Name" class="text-warning"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Crea</button>
+</form>
