@@ -21,7 +21,20 @@ namespace net_il_mio_fotoalbum.Controllers
         public IActionResult Index()
         {
             var images = _context.Images.Include(i => i.Categories).ToArray();
+
             return View(images);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var image = _context.Images.Include(i => i.Categories).SingleOrDefault(i => i.Id == id);
+
+            if (image is null)
+            {
+                return NotFound();
+            }
+
+            return View(image);
         }
 
 
