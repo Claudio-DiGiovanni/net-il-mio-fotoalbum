@@ -15,7 +15,7 @@ namespace net_il_mio_fotoalbum.Api
             _context = context;
         }
 
-        [HttpGet("/")]
+        [HttpGet]
         public IActionResult GetImages([FromQuery] string? title)
         {
             var images = _context.Images!
