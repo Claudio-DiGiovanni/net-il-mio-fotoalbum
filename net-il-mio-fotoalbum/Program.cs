@@ -5,6 +5,7 @@ using static System.Formats.Asn1.AsnWriter;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Services.AddDbContext<AlbumContext>(options =>
     options.UseSqlServer("Data Source=localhost;Initial Catalog=imagesDb;Integrated Security=True;TrustServerCertificate=True"));
 
@@ -36,6 +37,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Image}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 using (var scope = app.Services.CreateScope())
 using (var ctx = scope.ServiceProvider.GetService<AlbumContext>())

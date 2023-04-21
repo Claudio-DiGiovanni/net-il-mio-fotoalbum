@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using net_il_mio_fotoalbum.Models;
-using System.Data;
-using System.Diagnostics;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
@@ -18,7 +20,8 @@ namespace net_il_mio_fotoalbum.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var images = _context.Images.Include(i => i.Categories).ToArray();
+            return View(images);
         }
 
 

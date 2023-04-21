@@ -8,8 +8,8 @@ namespace net_il_mio_fotoalbum.Models
     {
         public AlbumContext(DbContextOptions<AlbumContext> options) : base(options) { }
 
-        DbSet<Image> Images { get; set; }
-        DbSet<Category> Categories { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public void Seed()
         {
