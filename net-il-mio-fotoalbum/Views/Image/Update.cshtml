@@ -2,7 +2,7 @@
 
 <h1 class="text-center my-5">Aggiungi una foto</h1>
 
-<form class="p-5" method="post" asp-action="Create" asp-controller="Image">
+<form class="p-5" method="post" asp-action="Update" asp-controller="Image">
     @Html.AntiForgeryToken()
     <div class="mb-3">
         <label asp-for="Image.Title" class="form-label">Titolo foto</label>
@@ -28,5 +28,5 @@
         <label asp-for="SelectedCategory">Categorie</label>
         <select asp-for="SelectedCategory" class="form-select" multiple="multiple" asp-items="Model.Categories"></select>
     </div>
-    <button type="submit" class="btn btn-primary">Crea</button>
+    <button type="submit" class="btn btn-primary">Modifica</button>
 </form>
