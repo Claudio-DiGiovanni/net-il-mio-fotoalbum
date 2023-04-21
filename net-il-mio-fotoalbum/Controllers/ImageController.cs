@@ -37,6 +37,35 @@ namespace net_il_mio_fotoalbum.Controllers
             return View(image);
         }
 
+        public IActionResult Create()
+        {
+            var formModel = new ImageFormModel
+            {
+                Categories = _context.Categories!.Select(i => new SelectListItem(i.Name, i.Id.ToString())).ToList(),
+            };
+
+            return View(formModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ImageFormModel form)
+        {
+            if (!ModelState.IsValid)
+            {
+                form.Categories = _context.Categories.Select(i => new SelectListItem(i.Name, i.Id.ToString())).ToList();
+
+                return View(form);
+            }
+
+            form.Image.Categories = form.SelectedCategoryIds.Select(sc => _context.Categories.FirstOrDefault(c => c.Id == Convert.ToInt32(sc) )).ToList()!;
+
+            _context.Images.Add(form.Image);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

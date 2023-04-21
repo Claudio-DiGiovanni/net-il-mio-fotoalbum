@@ -1,0 +1,32 @@
+﻿@model ImageFormModel
+
+<h1 class="text-center my-5">Aggiungi una foto</h1>
+
+<form class="p-5" method="post" asp-action="Create" asp-controller="Image">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label asp-for="Image.Title" class="form-label">Titolo foto</label>
+        <input type="text" class="form-control" asp-for="Image.Title" placeholder="Inserisci il titolo della foto">
+        <span asp-validation-for="Image.Title" class="text-warning"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Image.Description" class="form-label">Descrizione foto</label>
+        <input type="text" class="form-control" asp-for="Image.Description" placeholder="Inserisci la descrizione della foto">
+        <span asp-validation-for="Image.Description" class="text-warning"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Image.Url" class="form-label">Url foto</label>
+        <input type="url" class="form-control" asp-for="Image.Url" placeholder="Inserisci l'url della foto">
+        <span asp-validation-for="Image.Url" class="text-warning"></span>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="flexSwitchCheckDefault" role="switch" asp-for="Image.Visible">
+        <label asp-for="Image.Visible" class="form-check-label" for="flexSwitchCheckDefault">Visibile?</label>
+        <span asp-validation-for="Image.Visible" class="text-warning"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SelectedCategoryIds">Categorie</label>
+        <select asp-for="SelectedCategoryIds" class="form-select" multiple="multiple" asp-items="Model.Categories"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Crea</button>
+</form>
