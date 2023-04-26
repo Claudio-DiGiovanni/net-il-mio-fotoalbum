@@ -85,9 +85,15 @@ namespace net_il_mio_fotoalbum.Models
                 Roles.AddRange(RolesSeed);
             }
 
-            if (!Users.Any(u => u.Email == "admin@dev.com") && !UserRoles.Any())
+            if (!Users.Any() && !UserRoles.Any())
             {
-                var admin = Users.First(u => u.Email == "admin@dev.com");
+                var admin = new IdentityUser<string> { 
+                Email = "admin@dev.com",
+                UserName = "Paolo"
+                };
+
+                var passwordHasher = new PasswordHasher<IdentityUser>();
+                admin.PasswordHash = passwordHasher.HashPassword((IdentityUser)admin, "admin");
 
                 var adminRole = Roles.First(r => r.Name == "Admin");
 
