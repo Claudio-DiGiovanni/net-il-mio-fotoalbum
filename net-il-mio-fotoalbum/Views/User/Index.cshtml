@@ -18,10 +18,27 @@
     
 </div>
 
+
+<h3 class="pt-5 pb-3">Contattami!</h3>
+<form class="pb-5" id="message-form">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Inserisci la tua Email">
+        <span id="email-error" class="text-warning"></span>
+    </div>
+    <div class="mb-3">
+        <label for="message" class="form-label">Messaggio</label>
+        <textarea class="form-control" id="message"></textarea>
+        <span id="message-error" class="text-warning"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Invia</button>
+</form>
+
 @section Scripts
 {
     <script>
         loadImages();
         initFilter();
+        initMessageForm();
     </script>
 }

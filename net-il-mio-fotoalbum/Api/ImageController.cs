@@ -25,7 +25,13 @@ namespace net_il_mio_fotoalbum.Api
                 .Include(i => i.Categories)
                 .ToList();
 
-            foreach (var image in images) image.Categories = null;
+            foreach (var image in images)
+            {
+                foreach (var category in image.Categories!)
+                {
+                    category.Images = null;
+                }
+            }
 
             return Ok(images);
         }
@@ -43,5 +49,13 @@ namespace net_il_mio_fotoalbum.Api
             return Ok(image);
         }
 
+
+        [HttpPost]
+        public IActionResult CreateMessage(Message message)
+        {
+            _context.Messages.Add(message);
+            _context.SaveChanges();
+            return Ok(message);
+        }
     }
 }
