@@ -85,29 +85,26 @@ namespace net_il_mio_fotoalbum.Models
                 Roles.AddRange(RolesSeed);
             }
 
-            if (!Users.Any() && !UserRoles.Any())
-            {
-                var admin = new IdentityUser<string> { 
-                Email = "admin@dev.com",
-                UserName = "Paolo"
-                };
 
-                var passwordHasher = new PasswordHasher<IdentityUser>();
-                admin.PasswordHash = passwordHasher.HashPassword((IdentityUser)admin, "admin");
+            //  PRIMA AVVIARE, REGISTRARSI CON LA MAIL "admin@dev.com",
+            //  INTERROMPERE IL PROGRAMMA, SCOMMENTARE LA PARTE SOTTO E RIAVVIARE
+
+            /*
+            if (Users.Any(u => u.Email == "admin@dev.com") && !UserRoles.Any())
+            {
+                var admin = Users.First(u => u.Email == "admin@dev.com");
 
                 var adminRole = Roles.First(r => r.Name == "Admin");
 
-                var seed = new IdentityUserRole<string>[]
-                {
-                    new()
-                    {
-                        UserId = admin.Id,
-                        RoleId = adminRole.Id
-                    },
+                var seed = new IdentityUserRole<string>
+                { 
+                    UserId = admin.Id,
+                    RoleId = adminRole.Id   
                 };
 
-                UserRoles.AddRange(seed);
+                UserRoles.Add(seed);
             }
+            */
 
             SaveChanges();
         }
